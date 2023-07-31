@@ -17,6 +17,15 @@ public class PacientService {
         return pacientRepository.findAll();
     }
 
+    public List<PacientModel> buscar(int idPacient, String paciente,String servicio, String hora){
+        return pacientRepository.find(idPacient,paciente,servicio,hora);
+    }
+
+    //Obtener los datos ordenados descendentemente
+    public List<PacientModel> ordenar(){
+        return pacientRepository.order();
+    }
+
     public void agendar(PacientModel pacient){
         pacientRepository.save(pacient);
     }

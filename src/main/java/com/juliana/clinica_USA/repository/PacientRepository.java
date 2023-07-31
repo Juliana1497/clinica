@@ -7,8 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PacientRepository extends JpaRepository<PacientModel,Integer> {
+    //Crear metodo para buscar por un atributo en especifico
+    List<PacientModel> find(int idPacient, String paciente,String servicio, String hora);
 
-    @Query(value = "SELECT pacient.*, count(*) AS count_status FROM pacient \n"+
-            "GROUP BY client.id_client\n", nativeQuery = true)
-    List<PacientModel> reportPacients(String status);
+    //Obtener los datos ordenados descendentemente
+    @Query(value="select * from pacient order by precio desc", nativeQuery = true)
+    List<PacientModel> order();
+
+    //Obtener el nombre del paciente con la cita más costosa
 }

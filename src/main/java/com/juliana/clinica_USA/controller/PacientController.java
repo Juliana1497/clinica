@@ -15,10 +15,23 @@ public class PacientController {
     @Autowired
     PacientService pacientService;
 
-    @GetMapping("all")
+    //Obtener los datos ordenados descendentemente
+    @GetMapping("/all-order")
+    public List<PacientModel> ordenar(){
+        return pacientService.ordenar();
+    }
+
+    @GetMapping("/all")
     public List<PacientModel> obtener(){
         return pacientService.obtener();
     }
+
+    //Crear metodo para buscar por un atributo en especifico
+    @GetMapping("/all-idPacient-paciente-servicio-hora")
+    public List<PacientModel> buscar(@RequestParam int idPacient,@RequestParam String paciente,@RequestParam String servicio, @RequestParam String hora){
+        return pacientService.buscar(idPacient, paciente, servicio, hora);
+    }
+
 
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
