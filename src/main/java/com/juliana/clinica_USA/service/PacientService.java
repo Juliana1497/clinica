@@ -9,7 +9,6 @@ import java.util.List;
 
 @Service
 public class PacientService {
-
     @Autowired
     PacientRepository pacientRepository;
 
@@ -17,6 +16,7 @@ public class PacientService {
         return pacientRepository.findAll();
     }
 
+    //metodo para buscar
     public List<PacientModel> buscar(String paciente,String servicio, String hora){
         return pacientRepository.findByPacienteAndServicioAndHora(paciente,servicio,hora);
     }
