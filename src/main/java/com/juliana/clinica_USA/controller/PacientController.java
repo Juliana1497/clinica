@@ -27,9 +27,9 @@ public class PacientController {
     }
 
     //Crear metodo para buscar por un atributo en especifico
-    @GetMapping("/all-idPacient-paciente-servicio-hora")
-    public List<PacientModel> buscar(@RequestParam int idPacient,@RequestParam String paciente,@RequestParam String servicio, @RequestParam String hora){
-        return pacientService.buscar(idPacient, paciente, servicio, hora);
+    @GetMapping("/all-paciente-servicio-hora")
+    public List<PacientModel> buscar(@RequestParam String paciente,@RequestParam String servicio, @RequestParam String hora){
+        return pacientService.buscar(paciente, servicio, hora);
     }
 
 
@@ -49,5 +49,23 @@ public class PacientController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void cancelar(@PathVariable int id){
         pacientService.cancelar(id);
+    }
+
+    //Obtener el paciente con la cita más costosa
+    @GetMapping("/name-maxprecio")
+    public List<PacientModel> maximo(){
+        return pacientService.maximo();
+    }
+
+    //Obtener el paciente con la cita menos costosa
+    @GetMapping("/name-minprecio")
+    public List<PacientModel> minimo(){
+        return pacientService.minimo();
+    }
+
+    //Obtener el promedio de los precios
+    @GetMapping("/precio-promedio")
+    public List<PacientModel> promedio(){
+        return pacientService.promedio();
     }
 }

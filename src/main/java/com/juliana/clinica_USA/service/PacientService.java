@@ -17,8 +17,8 @@ public class PacientService {
         return pacientRepository.findAll();
     }
 
-    public List<PacientModel> buscar(int idPacient, String paciente,String servicio, String hora){
-        return pacientRepository.find(idPacient,paciente,servicio,hora);
+    public List<PacientModel> buscar(String paciente,String servicio, String hora){
+        return pacientRepository.findByPacienteAndServicioAndHora(paciente,servicio,hora);
     }
 
     //Obtener los datos ordenados descendentemente
@@ -37,5 +37,20 @@ public class PacientService {
         if(pacientRepository.existsById(pacient.getIdPacient())){
             pacientRepository.save(pacient);
         }
+    }
+
+    //Obtener el nombre del paciente con la cita más costosa
+    public List<PacientModel> maximo(){
+        return pacientRepository.max();
+    }
+
+    //Obtener el nombre del paciente con la cita menos costosa
+    public List<PacientModel> minimo(){
+        return pacientRepository.min();
+    }
+
+    //Obtener el promedio de los precios
+    public List<PacientModel> promedio(){
+        return pacientRepository.average();
     }
 }
